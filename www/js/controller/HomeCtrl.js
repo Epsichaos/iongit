@@ -4,7 +4,7 @@ app.controller('HomeCtrl', function($scope, $cordovaOauth, $ionicPlatform) {
     $scope.oauthResponse="test";
   });
 
-  $scope.logIn = function() {
+  $scope.githubAuth = function() {
     $cordovaOauth.github(APP_PUBLIC_KEY,
       APP_SECRET_KEY, [APP_EMAIL]).then(function(res) {
       $scope.oauthResponse = JSON.stringify(res);
