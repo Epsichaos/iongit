@@ -7,13 +7,9 @@ node_js:
 notifications:
     email: false
 
-addons:
-apt:
-sources:
-- ubuntu-toolchain-r-test
 packages:
 - g++-4.8
-- openjdk-7-jdk
+- openjdk-8-jdk
 - lib32stdc++6
 - lib32z1
 env:
