@@ -1,8 +1,11 @@
 app.controller('HomeCtrl', function($scope, $cordovaOauth, $ionicPlatform) {
   $ionicPlatform.ready(function() {
-    //$scope.logIn()
-    $scope.oauthResponse="test";
+    $scope.init();
   });
+
+  $scope.init = function() {
+
+  };
 
   $scope.githubAuth = function() {
     $cordovaOauth.github(APP_PUBLIC_KEY,
