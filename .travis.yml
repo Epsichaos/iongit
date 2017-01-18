@@ -9,7 +9,7 @@ notifications:
 
 packages:
 - g++-4.8
-- openjdk-8-jdk
+- oraclejdk8
 - lib32stdc++6
 - lib32z1
 
@@ -34,8 +34,6 @@ before_script:
 - export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/23.0.2
 
 script:
-- echo $JAVA_HOME
-- export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 - echo $JAVA_HOME
 - npm install
 - ionic platform remove android
