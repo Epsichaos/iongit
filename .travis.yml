@@ -31,8 +31,7 @@ before_script:
 
 script:
 - echo $JAVA_HOME
-- jdk_switcher use oraclejdk8
-- echo $JAVA_HOME
+- ls -al /usr/lib/jvm/
 - npm install
 - ionic platform remove android
 - ionic platform add android
