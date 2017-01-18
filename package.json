@@ -20,6 +20,8 @@
     "cordova-plugin-statusbar",
     "cordova-plugin-device",
     "cordova-plugin-splashscreen",
+    "cordova-plugin-inappbrowser",
+    "cordova-sqlite-storage",
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
