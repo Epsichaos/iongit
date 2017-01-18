@@ -14,7 +14,7 @@ packages:
 - lib32stdc++6
 - lib32z1
 env:
-CXX=g++-4.8
+- CXX=g++-4.8
 
 install:
 - npm install -g gulp bower cordova ionic
