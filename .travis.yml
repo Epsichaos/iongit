@@ -14,8 +14,9 @@ addons:
         - oracle-java8-set-default
         - lib32stdc++6
         - lib32z1
-    env:
-    - CXX=g++-4.8
+        
+env:
+- CXX=g++-4.8
 
 install:
 - npm install -g bower cordova ionic
