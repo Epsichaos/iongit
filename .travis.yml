@@ -9,7 +9,7 @@ notifications:
 
 packages:
 - g++-4.8
-- oraclejdk8
+- oracle-java8-installer
 - lib32stdc++6
 - lib32z1
 
