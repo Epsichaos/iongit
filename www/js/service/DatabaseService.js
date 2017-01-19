@@ -7,12 +7,26 @@ angular.module('db.service', ['ngCordova'])
       return db;
     };
 
-    var createTable = function ($cordovaSQLite) {
-      console.log('create table');
+    var createDB = function () {
+      var deferred = $q.defer();
+      console.log('create db');
       db = $cordovaSQLite.openDB({name: 'dev.iongit.db', location: 'default'});
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS iongit_user (id integer primary key, userToken text)");
+      deferred.resolve();
+      return deferred.promise;
     };
 
+    var createTable = function() {
+      var deferred = $q.defer();
+      console.log('create table');
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS iongit_user (id integer primary key, userToken text)").then(function (success) {
+        deferred.resolve(success);
+      }, function (error) {
+        deferred.reject(error)
+      });
+      return deferred.promise;
+    };
+
+    /*
     var dropTable = function () {
       var deferred = $q.defer();
       $cordovaSQLite.execute(db, "DROP TABLE iongit_user").then(function () {
@@ -61,13 +75,14 @@ angular.module('db.service', ['ngCordova'])
       });
       return deferred.promise;
     };
-
+*/
     return {
       getDB: getDB,
+      createDB: createDB,
+      createTable: createTable/*,
       dropTable: dropTable,
-      createTable: createTable,
       getUserToken: getUserToken,
       removeUserToken: removeUserToken,
-      saveUserToken: saveUserToken
+      saveUserToken: saveUserToken*/
     };
   });
