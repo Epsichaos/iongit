@@ -62,6 +62,7 @@ angular.module('db.service', ['ngCordova'])
     var removeUserToken = function () {
       var deferred = $q.defer();
       $cordovaSQLite.execute(db, "DELETE FROM iongit_user").then(function () {
+        console.log("REMOVED");
         deferred.resolve();
       }, function () {
         deferred.reject();

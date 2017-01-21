@@ -1,0 +1,53 @@
+<ion-view>
+  <ion-nav-title>Home</ion-nav-title>
+  <ion-tabs class="tabs-positive tabs-icon-top" ng-show="isLogged()">
+    <ion-tab title="Infos" icon-on="ion-ios-information-outline"
+             icon-off="ion-ios-information-outline">
+      <ion-content class="has-tabs-and-header">
+        <div>
+          <h1>Infos</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque autem, delectus deleniti esse fugiat ipsa
+            nihil odio placeat possimus quibusdam ratione, repudiandae sapiente? Ab impedit iure minima nulla quasi
+            reiciendis.</p>
+        </div>
+      </ion-content>
+    </ion-tab>
+    <ion-tab title="Repositories" icon-on="ion-code"
+             icon-off="ion-code">
+      <ion-content class="has-tabs-and-header">
+        <div>
+          <h1>Repos</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aspernatur beatae culpa, dolorum id
+            laboriosam minima neque sequi? A deleniti dicta dolore facere iure neque provident quae sequi tenetur
+            vel.</p>
+        </div>
+      </ion-content>
+    </ion-tab>
+    <ion-tab title="Events" icon-on="ion-ios-calendar-outline"
+             icon-off="ion-ios-calendar-outline">
+      <ion-content class="has-tabs-and-header">
+        <div>
+          <h1>Events</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut debitis dolor dolorum iusto laudantium minus
+            nemo, repellendus sequi sunt? Amet corporis deserunt eius praesentium quam sed tempora voluptatem
+            voluptates.
+            Hic!</p>
+        </div>
+      </ion-content>
+    </ion-tab>
+  </ion-tabs>
+  <ion-content class="login-menu" ng-show="!isLogged()">
+    <div>
+      <h1 class="text-center">Log in</h1>
+      <div class="row">
+        You need to log in into your github account to access all your data. Only your public profile
+        will be accessed. You can remove this access any time your want in the settings of your github
+        account.
+      </div>
+      <button class="button button-full button-positive"
+              ng-click="githubAuth()">
+        <i class="ion-social-github"></i> Log in with Github
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

@@ -17,13 +17,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: '/home',
-      templateUrl: 'partials/home.html',
+      templateUrl: 'partials/home/home.html',
       controller: 'HomeCtrl'
     })
     .state('about', {
       url: '/about',
-      templateUrl: 'partials/about.html'
-      //controller:'AboutCtrl'
+      templateUrl: 'partials/about.html',
+      controller: 'AboutCtrl'
     });
   $urlRouterProvider.otherwise('home');
 });

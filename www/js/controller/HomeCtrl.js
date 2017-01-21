@@ -10,6 +10,9 @@ app.controller('HomeCtrl', function ($scope,
 
     /** --- INIT SCOPE FUNCTION --- **/
     $scope.init = function () {
+      $scope.infos = true;
+      $scope.repos = false;
+      $scope.events = false;
       $ionicConfig.tabs.position("bottom");
       console.log('scope init');
       DatabaseService.createDB().then(function () {
@@ -40,6 +43,23 @@ app.controller('HomeCtrl', function ($scope,
 
     $scope.isLogged = function() {
       return DatabaseService.getToken() != null;
+    };
+
+    $scope.showTabs = function (str) {
+      console.log(str);
+      if(str == "infos") {
+        $scope.infos = true;
+        $scope.repos = false;
+        $scope.events = false;
+      } else if(str == "repos") {
+        $scope.infos = false;
+        $scope.repos = true;
+        $scope.events = false;
+      } else if(str == "events") {
+        $scope.infos = false;
+        $scope.repos = false;
+        $scope.events = true;
+      }
     };
 
     $scope.init();
