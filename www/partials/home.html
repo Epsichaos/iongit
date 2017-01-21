@@ -1,11 +1,36 @@
 <ion-view>
   <ion-nav-title>Home</ion-nav-title>
-  <ion-content>
-    <button class="button button-full button-positive"
-            ng-click="githubAuth()">
-      <i class="ion-social-github"></i> LogIn with Github
-    </button>
+  <ion-tabs class="tabs-positive tabs-icon-top" ng-show="isLogged()">
+    <ion-tab title="Infos" icon-on="ion-ios-information-outline" icon-off="ion-ios-information-outline">
+      <!-- Tab 1 content -->
+    </ion-tab>
+    <ion-tab title="Repositories" icon-on="ion-code" icon-off="ion-code">
+      <!-- Tab 1 content -->
+    </ion-tab>
+    <ion-tab title="Events" icon-on="ion-ios-calendar-outline" icon-off="ion-ios-calendar-outline">
+      <!-- Tab 1 content -->
+    </ion-tab>
+  </ion-tabs>
+  <ion-content class="has-tabs-top">
+    <div ng-show="!isLogged()">
+      <h1 class="text-center">Log in</h1>
+      <div class="row">
+        You need to log in into your github account to access all your data. Only your public profile
+        will be accessed. You can remove this access any time your want in the settings of your github
+        account.
+      </div>
+      <button class="button button-full button-positive"
+              ng-click="githubAuth()">
+        <i class="ion-social-github"></i> LogIn with Github
+      </button>
+    </div>
 
-    {{token}}
+    <div ng-show="isLogged()">
+      <div class="card">
+        <div class="item item-divider bar bar-assertive">
+          @USER_NAME
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

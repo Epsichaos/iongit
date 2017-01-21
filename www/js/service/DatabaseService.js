@@ -90,7 +90,6 @@ angular.module('db.service', ['ngCordova'])
       createDB: createDB,
       getToken: getToken,
       setToken: setToken,
-      setTokenInService: setTokenInService,
       createTable: createTable,
       dropTable: dropTable,
       getUserToken: getUserToken,

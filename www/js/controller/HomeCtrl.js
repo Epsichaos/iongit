@@ -1,5 +1,5 @@
-app.controller('HomeCtrl', function ($rootScope,
-                                     $scope,
+app.controller('HomeCtrl', function ($scope,
+                                     $ionicConfig,
                                      $cordovaOauth,
                                      $ionicPlatform,
                                      $cordovaSQLite,
@@ -10,6 +10,7 @@ app.controller('HomeCtrl', function ($rootScope,
 
     /** --- INIT SCOPE FUNCTION --- **/
     $scope.init = function () {
+      $ionicConfig.tabs.position("bottom");
       console.log('scope init');
       DatabaseService.createDB().then(function () {
         DatabaseService.createTable().then(function () {
@@ -35,6 +36,10 @@ app.controller('HomeCtrl', function ($rootScope,
       }, function (error) {
         console.log("Error -> " + error);
       });
+    };
+
+    $scope.isLogged = function() {
+      return DatabaseService.getToken() != null;
     };
 
     $scope.init();
