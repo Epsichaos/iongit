@@ -15,7 +15,7 @@ angular.module('db.service', ['ngCordova'])
       return deferred.promise;
     };
 
-    var createTable = function() {
+    var createTable = function () {
       var deferred = $q.defer();
       console.log('create table');
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS iongit_user (id integer primary key, userToken text)").then(function (success) {
@@ -26,24 +26,22 @@ angular.module('db.service', ['ngCordova'])
       return deferred.promise;
     };
 
-    /*
+
     var dropTable = function () {
       var deferred = $q.defer();
       $cordovaSQLite.execute(db, "DROP TABLE iongit_user").then(function () {
         deferred.resolve();
-      }, function() {
+      }, function () {
         deferred.reject();
       });
       return deferred.promise
     };
 
-    var getUserToken = function() {
+    var getUserToken = function () {
       console.log('get user token');
-      $cordovaSQLite.execute(db, "GET * FROM iongit_user WHERE id=0").then(function (res) {
-        return {
-          id: res.id,
-          userToken: res.userToken
-        };
+      var query = "SELECT * FROM iongit_user WHERE id=?";
+      $cordovaSQLite.execute(db, query, [0]).then(function (res) {
+        return res;
       }, function () {
         return {};
       });
@@ -52,37 +50,37 @@ angular.module('db.service', ['ngCordova'])
     var removeUserToken = function () {
       console.log('remove user token');
       var deferred = $q.defer();
-      $cordovaSQLite.execute(db, "REMOVE * FROM iongit_user").then(function () {
+      $cordovaSQLite.execute(db, "DELETE FROM iongit_user").then(function () {
         deferred.resolve();
-      }, function() {
+      }, function () {
         deferred.reject();
       });
       return deferred.promise;
     };
 
     var saveUserToken = function (token) {
-      console.log('save user token');
       var deferred = $q.defer();
       removeUserToken().then(function () {
-        var query = "INSERT INTO iongit_user (id, soundName) VALUES (?,?)";
-        $cordovaSQLite.execute(db, query, [0, token]).then(function () {
-          deferred.resolve();
-        }, function () {
-          deferred.resolve();
+        var query = "INSERT INTO iongit_user (id, userToken) VALUES (?,?)";
+        $cordovaSQLite.execute(db, query, [0, token]).then(function (res) {
+          console.log("INSERTED");
+          deferred.resolve(res);
+        }, function (error) {
+          deferred.reject(error);
         });
-      }, function () {
-        deferred.reject();
+      }, function(error) {
+        deferred.reject(error);
       });
       return deferred.promise;
     };
-*/
+
     return {
       getDB: getDB,
       createDB: createDB,
-      createTable: createTable/*,
+      createTable: createTable,
       dropTable: dropTable,
       getUserToken: getUserToken,
       removeUserToken: removeUserToken,
-      saveUserToken: saveUserToken*/
+      saveUserToken: saveUserToken
     };
   });

@@ -1,17 +1,12 @@
 var app = angular.module('iongit', ['ionic', 'ngCordova', 'ngCordovaOauth', 'db.service']);
 
-app.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
+app.run(function ($ionicPlatform) {
+  $ionicPlatform.ready(function () {
+    if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      // Don't remove this line unless you know what you are doing. It stops the viewport
-      // from snapping when text inputs are focused. Ionic handles this internally for
-      // a much nicer keyboard experience.
       cordova.plugins.Keyboard.disableScroll(true);
     }
-    if(window.StatusBar) {
+    if (window.StatusBar) {
       StatusBar.styleDefault();
     }
   });
@@ -21,13 +16,13 @@ app.run(function($ionicPlatform) {
 app.config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
-      url:'/home',
-      templateUrl:'partials/home.html',
-      controller:'HomeCtrl'
+      url: '/home',
+      templateUrl: 'partials/home.html',
+      controller: 'HomeCtrl'
     })
     .state('about', {
-      url:'/about',
-      templateUrl:'partials/about.html'
+      url: '/about',
+      templateUrl: 'partials/about.html'
       //controller:'AboutCtrl'
     });
   $urlRouterProvider.otherwise('home');

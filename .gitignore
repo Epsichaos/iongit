@@ -7,3 +7,4 @@ plugins/
 www/js/config.js
 .idea
 www/lib/
+config.xml
