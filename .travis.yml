@@ -13,7 +13,7 @@ addons:
         - oracle-java8-set-default
 
 install:
-- npm install -g bower cordova ionic
+- npm install -g gulp bower cordova ionic
 - npm install
 - bower update
 

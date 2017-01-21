@@ -4,7 +4,7 @@ app.controller('HomeCtrl', function ($scope,
                                      $cordovaSQLite,
                                      $q,
                                      DatabaseService) {
-  
+
   $ionicPlatform.ready(function () {
     /** --- INIT SCOPE FUNCTION --- **/
     $scope.init = function () {
