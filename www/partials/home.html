@@ -1,24 +1,11 @@
 <ion-view>
   <ion-nav-title>Home</ion-nav-title>
   <ion-content>
-    <!--
-    <div class="card">
-      <div class="item item-divider bar bar-assertive">
-        IONGIT
-      </div>
-      <div class="item item-text-wrap">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias blanditiis culpa, dolor eius et explicabo iste
-        laboriosam odio provident quae, quo reiciendis veniam voluptas? Aliquam eos et illum odio vel.
-      </div>
-    </div> -->
-    <div class="row row-center">
-      <div class="col col-center">
-        <button class="button button-full button-positive"
-                ng-click="githubAuth()">
-          <i class="ion-social-github"></i> LogIn with Github
-        </button>
-      </div>
-    </div>
-    {{oauthResponse}}
+    <button class="button button-full button-positive"
+            ng-click="githubAuth()">
+      <i class="ion-social-github"></i> LogIn with Github
+    </button>
+
+    {{token}}
   </ion-content>
 </ion-view>

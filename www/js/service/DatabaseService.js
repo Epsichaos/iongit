@@ -2,6 +2,7 @@ angular.module('db.service', ['ngCordova'])
   .factory('DatabaseService', function ($cordovaSQLite, $q) {
 
     var db = null;
+    var token = null;
 
     var getDB = function () {
       return db;
@@ -13,6 +14,14 @@ angular.module('db.service', ['ngCordova'])
       db = $cordovaSQLite.openDB({name: 'dev.iongit.db', location: 'default'});
       deferred.resolve();
       return deferred.promise;
+    };
+
+    var getToken = function() {
+      return token;
+    };
+
+    var setToken = function(user_token) {
+      token = user_token;
     };
 
     var createTable = function () {
@@ -37,18 +46,20 @@ angular.module('db.service', ['ngCordova'])
       return deferred.promise
     };
 
-    var getUserToken = function () {
-      console.log('get user token');
+    var getUserToken = function (callback) {
       var query = "SELECT * FROM iongit_user WHERE id=?";
       $cordovaSQLite.execute(db, query, [0]).then(function (res) {
-        return res;
-      }, function () {
-        return {};
+        if(res.rows.length > 0) {
+          callback(res.rows.item(0));
+        } else {
+          callback();
+        }
+      }, function (err) {
+        callback(err);
       });
     };
 
     var removeUserToken = function () {
-      console.log('remove user token');
       var deferred = $q.defer();
       $cordovaSQLite.execute(db, "DELETE FROM iongit_user").then(function () {
         deferred.resolve();
@@ -63,7 +74,7 @@ angular.module('db.service', ['ngCordova'])
       removeUserToken().then(function () {
         var query = "INSERT INTO iongit_user (id, userToken) VALUES (?,?)";
         $cordovaSQLite.execute(db, query, [0, token]).then(function (res) {
-          console.log("INSERTED");
+          this.token = token;
           deferred.resolve(res);
         }, function (error) {
           deferred.reject(error);
@@ -77,6 +88,9 @@ angular.module('db.service', ['ngCordova'])
     return {
       getDB: getDB,
       createDB: createDB,
+      getToken: getToken,
+      setToken: setToken,
+      setTokenInService: setTokenInService,
       createTable: createTable,
       dropTable: dropTable,
       getUserToken: getUserToken,

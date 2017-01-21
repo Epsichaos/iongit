@@ -1,4 +1,5 @@
-app.controller('HomeCtrl', function ($scope,
+app.controller('HomeCtrl', function ($rootScope,
+                                     $scope,
                                      $cordovaOauth,
                                      $ionicPlatform,
                                      $cordovaSQLite,
@@ -6,13 +7,16 @@ app.controller('HomeCtrl', function ($scope,
                                      DatabaseService) {
 
   $ionicPlatform.ready(function () {
-    
+
     /** --- INIT SCOPE FUNCTION --- **/
     $scope.init = function () {
       console.log('scope init');
       DatabaseService.createDB().then(function () {
-        DatabaseService.createTable().then(function (success) {
-          console.log("Database & table created");
+        DatabaseService.createTable().then(function () {
+          DatabaseService.getUserToken(function(token) {
+            DatabaseService.setToken(token.userToken);
+            $scope.token = DatabaseService.getToken();
+          });
         }, function (error) {
           console.log(error);
         });
@@ -21,14 +25,12 @@ app.controller('HomeCtrl', function ($scope,
 
     /** --- GITHUB OAUTH SERVICE --- **/
     $scope.githubAuth = function () {
-      console.log('github oauth');
       $cordovaOauth.github(APP_PUBLIC_KEY,
         APP_SECRET_KEY, [APP_EMAIL]).then(function (res) {
-        $scope.oauthResponse = JSON.stringify(res);
-        DatabaseService.saveUserToken($scope.oauthResponse.access_token).then(function (success) {
-          console.log(DatabaseService.getUserToken());
+        DatabaseService.saveUserToken(res.access_token).then(function () {
+
         }, function (error) {
-          console.log(error);
+          console.log("Error -> " + error);
         });
       }, function (error) {
         console.log("Error -> " + error);
