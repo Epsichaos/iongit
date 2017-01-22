@@ -1,14 +1,11 @@
 <ion-view>
   <ion-nav-title>Home</ion-nav-title>
-  <ion-tabs class="tabs-positive tabs-icon-top" ng-show="isLogged()">
+  <ion-tabs class="tabs-positive tabs-icon-top" ng-show="showTabs()">
     <ion-tab title="Infos" icon-on="ion-ios-information-outline"
              icon-off="ion-ios-information-outline">
       <ion-content class="has-tabs-and-header">
         <div>
-          <h1>Infos</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque autem, delectus deleniti esse fugiat ipsa
-            nihil odio placeat possimus quibusdam ratione, repudiandae sapiente? Ab impedit iure minima nulla quasi
-            reiciendis.</p>
+          <h1 class="text-center">Infos</h1>
         </div>
       </ion-content>
     </ion-tab>
@@ -16,10 +13,7 @@
              icon-off="ion-code">
       <ion-content class="has-tabs-and-header">
         <div>
-          <h1>Repos</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aspernatur beatae culpa, dolorum id
-            laboriosam minima neque sequi? A deleniti dicta dolore facere iure neque provident quae sequi tenetur
-            vel.</p>
+          <h1 class="text-center">Repos</h1>
         </div>
       </ion-content>
     </ion-tab>
@@ -27,16 +21,12 @@
              icon-off="ion-ios-calendar-outline">
       <ion-content class="has-tabs-and-header">
         <div>
-          <h1>Events</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut debitis dolor dolorum iusto laudantium minus
-            nemo, repellendus sequi sunt? Amet corporis deserunt eius praesentium quam sed tempora voluptatem
-            voluptates.
-            Hic!</p>
+          <h1 class="text-center">Events</h1>
         </div>
       </ion-content>
     </ion-tab>
   </ion-tabs>
-  <ion-content class="login-menu" ng-show="!isLogged()">
+  <ion-content class="login-menu" ng-show="showLogin()">
     <div>
       <h1 class="text-center">Log in</h1>
       <div class="row">

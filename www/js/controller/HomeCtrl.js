@@ -8,18 +8,19 @@ app.controller('HomeCtrl', function ($scope,
 
   $ionicPlatform.ready(function () {
 
+    $scope.state = "";
+
     /** --- INIT SCOPE FUNCTION --- **/
     $scope.init = function () {
-      $scope.infos = true;
-      $scope.repos = false;
-      $scope.events = false;
+      $scope.state = "login";
       $ionicConfig.tabs.position("bottom");
-      console.log('scope init');
       DatabaseService.createDB().then(function () {
         DatabaseService.createTable().then(function () {
           DatabaseService.getUserToken(function(token) {
             DatabaseService.setToken(token.userToken);
-            $scope.token = DatabaseService.getToken();
+            if(DatabaseService.getToken() != null) {
+              $scope.state = "view";
+            }
           });
         }, function (error) {
           console.log(error);
@@ -32,7 +33,7 @@ app.controller('HomeCtrl', function ($scope,
       $cordovaOauth.github(APP_PUBLIC_KEY,
         APP_SECRET_KEY, [APP_EMAIL]).then(function (res) {
         DatabaseService.saveUserToken(res.access_token).then(function () {
-
+          $scope.state = "view";
         }, function (error) {
           console.log("Error -> " + error);
         });
@@ -41,24 +42,19 @@ app.controller('HomeCtrl', function ($scope,
       });
     };
 
-    $scope.isLogged = function() {
-      return DatabaseService.getToken() != null;
+    $scope.showTabs = function() {
+      if($scope.state == "view") {
+        return true;
+      } else if($scope.state == "login") {
+        return false;
+      }
     };
 
-    $scope.showTabs = function (str) {
-      console.log(str);
-      if(str == "infos") {
-        $scope.infos = true;
-        $scope.repos = false;
-        $scope.events = false;
-      } else if(str == "repos") {
-        $scope.infos = false;
-        $scope.repos = true;
-        $scope.events = false;
-      } else if(str == "events") {
-        $scope.infos = false;
-        $scope.repos = false;
-        $scope.events = true;
+    $scope.showLogin = function() {
+      if($scope.state == "view") {
+        return false;
+      } else if($scope.state == "login") {
+        return true;
       }
     };
 

@@ -70,12 +70,12 @@ angular.module('db.service', ['ngCordova'])
       return deferred.promise;
     };
 
-    var saveUserToken = function (token) {
+    var saveUserToken = function (user_token) {
       var deferred = $q.defer();
       removeUserToken().then(function () {
         var query = "INSERT INTO iongit_user (id, userToken) VALUES (?,?)";
-        $cordovaSQLite.execute(db, query, [0, token]).then(function (res) {
-          this.token = token;
+        $cordovaSQLite.execute(db, query, [0, user_token]).then(function (res) {
+          this.token = user_token;
           deferred.resolve(res);
         }, function (error) {
           deferred.reject(error);
